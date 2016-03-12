@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<header>
+	<title> GPA Term Calculator</title>
+	  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+
+  <link href='https://fonts.googleapis.com/css?family=Josefin+Slab' rel='stylesheet' type='text/css'>
+
+<body class="main">
+<section class="jumbotron" style="background-color: white;">
+<h1 class="title">GPA Term Calculator</h1>
+<form id="form-container">
+<div id="courseinfo">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-4">
+      <label for="course">Courses</label><br></br>
+      <input type="text" id="course" placeholder="Course Name">
+      </div>
+
+      <div class="col-md-4">      
+      <label for="credit-hours">Credit Hours</label>
+      <br></br>
+      <input type="text" class="credit-hours" placeholder="e.g. 4">
+      </div>
+
+      <div class="col-md-4">
+            <label for="Grade">Grade</label><br></br>
+      <select class="grade">
+          <option value="4.00">A</option>
+          <option value="3.70">A-</option>
+          <option value="3.33">B+</option>
+          <option value="3.00">B</option>
+          <option value="2.70">B-</option>
+          <option value="2.30">C+</option>
+          <option value="2.00">C</option>
+          <option value="1.70">C-</option>
+          <option value="1.30">D+</option>
+          <option value="1.00">D</option>
+          <option value="0.70">D-</option>
+          <option value="0.00">F</option>
+          <!-- 
+          <option value="">Pass</option> 
+          <option value="">Pass</option> 
+          I want to add these option in a later version -->
+      </select>
+
+
+
+      </div>  
+
+    </div>
+  </div>
+</div>
+
+
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <h4 id="gpatext"></h4> 
+        <h1 id="gpaCalc"></h1>
+<h2 id="NotNum"></h2>  
+</div>
+
+      <div class="col-md-4">
+      <div class="buttons">
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <br></br>
+        <input type="button" id="add-course" onclick="add_course();" value="Add a Course" />
+      <br></br>
+        <button id="submit-btn">Calculate GPA</button>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+</div>
+</form>
+
+</section>
+
+
+
+
+<h3> How to calculate your GPA</h3>
+<section class="container" id="instructions">
+  <div class="row">
+    <div class="col-md-3" style="background-color: lightgray;">
+      <h5>Grade Point Scale</h5>
+      <br>A = 4.00 grade points</br>
+      <br>A- = 3.70 grade points</br>
+      <br>B+ = 3.33 grade points</br>
+      <br>B = 3.00 grade points</br>
+      <br>B- = 2.70 grade points</br>
+      <br>C+ = 2.30 grade points</br>
+      <br>C = 2.00 grade points</br>
+      <br>C- = 1.70 grade points</br>
+      <br>D+ = 1.30 grade points</br>
+      <br>D = 1.00 grade points</br>
+      <br>D- = 0.70 grade points</br>
+      <br>F = 0.00 grade points</br>
+      <br><p>- Note that "Pass" and "No Pass" grades do not count towards your GPA</p></br>
+    </div>
+    <div class="col-md-7">
+      <p> To calculate your term GPA you need to divide your <b><span id="totgpearned">total grade points earned</span></b> by the number of <b><span id="totcredhours">total credit hours attempted</span></b> (also known as "units").</p>
+      <p><b><span id="totgpearned">total grade points earned</span> / <span id="totcredhours">total credit hours attempted</span> = GPA</b></p>
+        <br></br>
+      <p><b><span id="totgpearned">Total grade points earned<span></b> can be calculated by multiplying the <b><span id="gradepoints">grade point</span></b> (see grade point scale on the left) for your course by your <b><span id="credithours">credit hours attempted</span></b> for that course. </p>
+        <br></br>
+      <p>Example:</p> 
+      <p>You took a Physiology course that was <b>4 <span id="credithours">credit hours</span></b> (or units) and a English course that was <b>3 <span id="credithours">credit hours</span></b>. Your recieved a grade of an <b>A-</b> and a <b>B+</b>, respectively. You calculate your <b><span id="gradepointsearned">grade points earned</span></b> for those courses by multiplying(*) your <b><span id="credithours">credit hours attempted</span></b> by your <b><span id="gradepoints">grade points</span>.</b>
+      <p></p>
+      <p>Physiology:  <b>4 <span id="credithours">credit hours attempted</span> </b> * <b> 3.70 <span id="gradepoints">grade points</span></b> = <b>14.8 <span id="gradepointsearned">grade points earned</span></b></p>
+      <p>English:  <b>3 <span id="credithours">credit hours attempted</span> </b> * <b> 3.33 <span id="gradepoints">grade points</span></b> = <b>9.99 <span id="gradepointsearned">grade points earned</span></b></p>
+      <p><b>Totals:</b></p>
+      <p id="phys-eng-total"><b>24.79<span id="totgpearned"> total grade points earned</span><br> 7 <span id="totcredhours">total credit hours attempted</span></br></b></p>
+        <br></br>
+      <p>To get your GPA for those courses: 
+          <br>take your 
+            <b>24.79
+              <span id="totgpearned">total grade points earned</span>
+            </b> and divide it by your 
+            <b>7 
+              <span id="totcredhours">total credit hours attempted</span>
+            </b>. Which results in a <b>3.54</b> GPA
+          </br>  
+      </p>
+      <p><b>24.79<span id="totgpearned"> total grade points earned</span> / 7 <span id="totcredhours">total credit hours attempted</span> = 3.54 GPA</b></p>
+          <br></br>
+      <p> If you don't want to calculate your GPA this way, that's okay! That's what the GPA calculator is for!</p>
+      </div>
+    </div>
+</section>
+
+</body>
+
+
+    <script src="jquery.min.js"></script>
+    <script src="script.js"></script>
+
+
+</html>
+

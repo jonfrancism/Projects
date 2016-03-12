@@ -1,0 +1,26 @@
+
+
+#mainbody {
+	background-color: #FF7E7E;
+	text-align: center;
+}
+
+#title {
+	font-family: 'Architects Daughter';
+	font-size: 100px;
+}
+
+#translated {
+	font-family: 'Architects Daughter';
+	color: #FFFFFF;
+}
+
+#word {
+	border-radius: 10px;
+}
+
+#submit-btn {
+	border-radius: 10px;
+	color: white;
+	background-color: black;
+}
